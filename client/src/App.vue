@@ -21,9 +21,16 @@ export default {
     return {
       employees: [],
       serverAddress: process.env.VUE_APP_SERVER,
+      show: false,
     };
   },
+  created() {
+    document.addEventListener('swUpdated', this.updateAvailable, { once: true });
+  },
   methods: {
+    updateAvailable() {
+      alert('Update vorhanden, bitte App neu starten!');
+    },
     async getEmployees() {
       try {
         const { data } = await axios({
